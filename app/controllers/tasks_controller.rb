@@ -4,8 +4,8 @@ class TasksController < ApplicationController
 	before_action :find_project
 
 	def new
-		@task = @project.tasks.new()
-		render_form
+		@task = @project.tasks.new
+		render partial: 'form', layout: false
 	end
 
 	def create
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
 
 	def render_form
 		respond_to do |format|
-			format.js { render template: '/tasks/form.js.erb' }
+			format.js { render partial: '/tasks/form.html.erb' }
 		end
 	end
 

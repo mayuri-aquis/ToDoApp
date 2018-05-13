@@ -16,6 +16,25 @@
 //= require activestorage
 //= require_tree .
 
+$(document).ready(function () {
+	$('body').on('click', '[data-toggle="modal"]', function(e) {
+		e.preventDefault();
+		console.log($(this).attr('href'));
+		$.ajax({
+		  url: $(this).attr('href'),
+		  success: function(result) {
+		    $('.modal-body').html(result);
+		  },
+		  error: function(result) {
+		    $('.modal-body').html('Error loading content. Please close popup and retry.');
+		  },
+		  complete: function(e) {
+	    	$('#myModal').modal('show');
+		  }
+		});
+    }); 
+});
+
 function clearViewPane() {
 	$('#errors .alert-danger').html('').addClass('hidden');
 	$('#content_pane').html('');
