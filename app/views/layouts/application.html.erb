@@ -33,13 +33,11 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div>
           <div class='flash_msgs'>
             <%= bootstrap_flash %>
           </div>
           <%= yield %>
-          <a href="#" class="btn" id="openBtn">Open modal</a>
-
         </div>
       </div><!--/row-->
       <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
@@ -52,9 +50,7 @@
             <div class="modal-body">
               <p>My modal content here…</p>
             </div>
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal">Close</button>
-            </div>
+            <div class="modal-footer"></div>
           </div>
         </div>
       </div>

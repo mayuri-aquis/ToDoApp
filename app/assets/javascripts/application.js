@@ -12,18 +12,23 @@
 //
 //= require jquery3
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require activestorage
 //= require_tree .
 
 $(document).ready(function () {
 	$('body').on('click', '[data-toggle="modal"]', function(e) {
 		e.preventDefault();
-		console.log($(this).attr('href'));
 		$.ajax({
 		  url: $(this).attr('href'),
+		  dataType: 'HTML',
 		  success: function(result) {
 		    $('.modal-body').html(result);
+		    $('.datepicker').datepicker({
+					format: "dd/mm/yyyy"
+		    });
 		  },
 		  error: function(result) {
 		    $('.modal-body').html('Error loading content. Please close popup and retry.');
@@ -38,4 +43,14 @@ $(document).ready(function () {
 function clearViewPane() {
 	$('#errors .alert-danger').html('').addClass('hidden');
 	$('#content_pane').html('');
+}
+
+function loadTask(elem) {
+	$.ajax({
+		url: $(elem).data('url'),
+		dataType: 'HTML',
+		success: function(data) {
+			$('.task_pane').html(data);
+		}
+	})
 }
